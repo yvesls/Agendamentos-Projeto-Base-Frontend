@@ -1,0 +1,33 @@
+.menu-consulta {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 300px;
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+.menu-consulta > ul > li,
+.menubar-consulta {
+    list-style: none;
+    padding: 20px;
+}
+
+.menu-consulta > ul > li {
+    padding: 20px;
+    background-color: #03428f;
+    border: 1px solid #004ba8;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.menu-consulta > ul > li:hover {
+    background-color: #0e6fe8;
+}
+
+.menu-consulta > ul > .menubar-consulta.menubar-consulta {
+    background-color: #0e6fe8;
+    padding: 10px;
+    border: none;
+}

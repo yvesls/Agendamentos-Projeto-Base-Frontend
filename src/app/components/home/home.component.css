@@ -1,0 +1,18 @@
+.container {
+    min-height: 600px;
+    max-height: 99.9vh;
+}
+
+.content-img {
+    min-height: 500px;
+    max-height: 100px;
+    height: 50%;
+    min-width: 500px;
+    width: 50%;
+    background-image: url("../../../assets/imagens/home.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-size: cover;
+    background-clip: border-box;
+}

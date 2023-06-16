@@ -1,0 +1,60 @@
+.dimensao {
+    height: 99.9vh;
+    max-height: 99.99999vh;
+    min-height: 99.99999vh;
+    background-color: #004ba8;
+    text-decoration: none;
+}
+
+.menu {
+    display: block;
+}
+
+.menu > ul {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}
+
+.menu > ul > li {
+    list-style: none;
+    width: 100%;
+    position: relative;
+    transition: background 0.3s;
+}
+
+.menu ul > li > i {
+    color: #ff6f00;
+}
+
+.menu > ul > li:hover {
+    background-color: #0e6fe8;
+}
+
+.logo {
+    min-height: 10vh;
+    background-image: url("../../../assets/imagens/logo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-size: cover;
+    background-clip: border-box;
+    cursor: pointer;
+}
+
+.exibir-menubar-consulta {
+    visibility: visible;
+}
+
+.esconder-menubar-consulta {
+    visibility: hidden;
+}
+
+.exibir-menubar-inclusao {
+    visibility: visible;
+}
+
+.esconder-menubar-inclusao {
+    visibility: hidden;
+}

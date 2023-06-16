@@ -1,0 +1,15 @@
+<div class="dimensao row">
+    <div class="menu w-100">
+        <div (click)="irParaHome()" class="logo mt-2"></div>
+        <ul class="row w-100 pt-3">
+            <li class="py-3" (mouseenter)="exibirMenubarConsulta()" (mouseleave)="exibirMenubarConsulta()">
+                <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+                <app-menu-consulta [ngClass]="habilitarClasseMenubarConsulta()"></app-menu-consulta>
+            </li>
+            <li class="py-3" (mouseenter)="exibirMenubarInclusao()" (mouseleave)="exibirMenubarInclusao()">
+                <i class="fa-solid fa-pen fa-2x"></i>
+                <app-menu-inclusao [ngClass]="habilitarClasseMenubarInclusao()"></app-menu-inclusao>
+            </li>
+        </ul>
+    </div>
+</div>
