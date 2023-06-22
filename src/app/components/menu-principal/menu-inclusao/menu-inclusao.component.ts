@@ -14,4 +14,16 @@ export class MenuInclusaoComponent implements OnInit {
     irParaCriarMedico(): void {
         this.router.navigate(["/criarMedico"]);
     }
+
+    irParaCriarEspecialidade(): void {
+        this.router.navigate(["/criarEspecialidade"]);
+    }
+
+    irParaCriarCliente() {
+        this.router.navigate(["/criarCliente"]);
+    }
+
+    irParaCriarAgendamento() {
+        this.router.navigate(["/criarAgendamento"]);
+    }
 }

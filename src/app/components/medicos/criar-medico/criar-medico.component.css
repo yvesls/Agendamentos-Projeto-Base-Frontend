@@ -1,0 +1,119 @@
+.container-formulario-criar-medico {
+    min-height: 60vh;
+    border-radius: 5px;
+    background-color: #f1f5f6;
+    border: 0.5px solid #b8b8b8;
+}
+
+.nome-formulario {
+    background-color: #004ba8;
+    color: white;
+    padding: 10px;
+    margin: 0 -16px;
+    border-radius: 5px 5px 0 0;
+    position: relative;
+    top: -2px;
+}
+
+.formulario-criar-medico {
+    min-height: 48vh;
+}
+
+input,
+select {
+    border: 1px solid #b8b8b8;
+    border-radius: 5px;
+}
+
+input {
+    height: 2rem;
+    padding: 10px 3px;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #888888;
+}
+
+select {
+    height: 2rem;
+    background-color: white;
+}
+
+select:focus {
+    outline: none;
+    border: 1px solid #888888;
+}
+
+.salvar,
+.cancelar {
+    border-radius: 5px;
+    padding: 5px 20px;
+    color: white;
+}
+
+.salvar {
+    background-color: #f16a02;
+}
+
+.cancelar {
+    background-color: #0e6fe8;
+}
+
+.campo {
+    position: relative;
+}
+
+.mensagem_erro {
+    position: absolute;
+    font-size: 12px;
+    color: red;
+    top: 90%;
+}
+
+.lista-especialidades {
+    list-style: none;
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
+    overflow-x: none;
+    overflow-y: scroll;
+}
+
+.lista-especialidades li {
+    width: 100%;
+    padding: 5px 0;
+    border: 1px solid #88888825;
+    cursor: pointer;
+}
+
+.lista-especialidades li:hover {
+    background-color: #88888825;
+}
+
+.ocultar-especialidades {
+    visibility: collapse;
+    border: 1px solid #88888844;
+    position: absolute;
+    top: 4.6rem;
+    left: 0.5rem;
+    width: 15rem;
+    height: 12rem;
+    z-index: 5;
+    background-color: #ffffff;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.exibir-especialidades {
+    visibility: visible;
+    border: 1px solid #88888844;
+    position: absolute;
+    top: 4.6rem;
+    left: 0.5rem;
+    width: 15rem;
+    height: 12rem;
+    z-index: 5;
+    background-color: #ffffff;
+    text-align: center;
+}

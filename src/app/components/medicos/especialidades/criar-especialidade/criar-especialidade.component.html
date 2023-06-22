@@ -1,0 +1,21 @@
+<section class="col-12 d-flex justify-content-end">
+    <div class="container-formulario-criar-especialidade mt-5 col-12 d-flex flex-column align-items-between">
+        <div class="nome-formulario">
+            <h3 class="p-0 m-0">Cadastrar Especialidade</h3>
+        </div>
+        <form [formGroup]="formulario" class="formulario-criar-especialidade m-2 d-flex flex-column justify-content-between">
+            <div class="d-flex flex-wrap">
+                <div class="campo p-2 d-flex flex-column col-8">
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" formControlName="descricao" />
+                    <div class="mensagem_erro" *ngIf="formulario.get('descricao')?.errors?.['required'] && formulario.get('descricao')?.touched">Descrição é obrigatória.</div>
+                    <div class="mensagem_erro" *ngIf="formulario.get('descricao')?.errors?.['pattern'] && formulario.get('descricao')?.touched">Descrição precisa ter caracteres válidos.</div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button [disabled]="!formulario.valid" (click)="criarEspecialidade()" class="btn salvar">Salvar</button>
+                <button class="btn cancelar ml-2" (click)="limparCampos()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</section>
