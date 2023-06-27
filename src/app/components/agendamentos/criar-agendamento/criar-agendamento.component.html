@@ -7,20 +7,18 @@
             <div class="d-flex flex-wrap">
                 <div class="campo p-2 d-flex flex-column col-6">
                     <label for="medico">Médico:</label>
-                    <select class="form-select" id="medico" formControlName="medico">
+                    <select class="form-select" id="medico" formControlName="medico" (click)="capturarMedicoEspecialidade()">
                         <option value=""></option>
-                        <option *ngFor="let medico of listaMedicos; index as i">
-                            {{ medico.pessoa.nome }}
-                        </option>
+                        <option *ngFor="let medicoEspecialidade of listaMedicoEspecialidades; index as i" [value]="medicoEspecialidade.medico?.pessoa?.nome">{{ medicoEspecialidade.medico?.pessoa?.nome }}, {{ medicoEspecialidade.especialidade?.descricao }}</option>
                     </select>
-                    <div class="mensagem_erro" *ngIf="formulario.get('medicoEspecialidade')?.errors?.['required'] && formulario.get('medicoEspecialidade')?.touched">Médico é obrigatório.</div>
+                    <div class="mensagem_erro" *ngIf="formulario.get('medico')?.errors?.['required'] && formulario.get('medico')?.touched">Médico é obrigatório.</div>
                 </div>
 
                 <div class="campo p-2 d-flex flex-column col-6">
                     <label for="cliente">Cliente:</label>
-                    <select class="form-select" id="cliente" formControlName="cliente">
+                    <select class="form-select" id="cliente" formControlName="cliente" (click)="capturarCliente()">
                         <option value=""></option>
-                        <option *ngFor="let cliente of listaClientes; index as i">
+                        <option *ngFor="let cliente of listaClientes; index as i" [value]="cliente.pessoa.nome">
                             {{ cliente.pessoa.nome }}
                         </option>
                     </select>

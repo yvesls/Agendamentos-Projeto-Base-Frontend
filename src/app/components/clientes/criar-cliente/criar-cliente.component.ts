@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ClienteService } from "../cliente.service";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Rota } from "../../rota";
+import { Cliente } from "../cliente";
+import { Telefone } from "../telefone";
 
 @Component({
     selector: "app-criar-cliente",
@@ -9,7 +13,26 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class CriarClienteComponent implements OnInit {
     formulario!: FormGroup;
-    constructor(private service: ClienteService, private formBuilder: FormBuilder) {}
+    rota?: Rota;
+    telefoneForm!: FormGroup;
+    emailForm!: FormGroup;
+    cliente: Cliente = {
+        id: undefined,
+        pessoa: {
+            nome: "",
+            sexo: "",
+            cpf: "",
+            dataNascimento: undefined,
+            peso: undefined,
+            altura: undefined,
+        },
+        telefones: [],
+        emails: [],
+        dataCriacao: undefined,
+        dataExclusao: undefined,
+    };
+
+    constructor(private clienteService: ClienteService, private formBuilder: FormBuilder, private router: Router) {}
 
     ngOnInit(): void {
         this.formulario = this.formBuilder.group({
@@ -22,10 +45,73 @@ export class CriarClienteComponent implements OnInit {
             telefones: [""],
             emails: [""],
         });
+        this.telefoneForm = this.formBuilder.group({
+            telefones: this.formBuilder.array([]),
+        });
+        this.emailForm = this.formBuilder.group({
+            emails: this.formBuilder.array([]),
+        });
     }
 
     criarCliente() {
         if (this.formulario.valid) {
+            this.defineCliente();
+            console.log(this.cliente);
+            this.clienteService.criar(this.cliente).subscribe((clienteSalvo) => {
+                this.rota = {
+                    caminho: "criarCliente",
+                };
+                if (clienteSalvo != null) {
+                    this.router.navigateByUrl("/sucesso/" + this.rota.caminho);
+                } else {
+                    this.router.navigateByUrl("/erro/" + this.rota.caminho);
+                }
+            });
+        }
+    }
+
+    defineCliente() {
+        this.cliente.telefones = this.telefones.value;
+        this.cliente.emails = this.emails.value;
+        this.cliente.pessoa.nome = this.formulario.get("nome")?.value;
+        this.cliente.pessoa.sexo = this.formulario.get("sexo")?.value.toUpperCase();
+        this.cliente.pessoa.cpf = this.formulario.get("cpf")?.value;
+        this.cliente.pessoa.dataNascimento = this.formulario.get("dataNascimento")?.value.substring(0, 10).concat("T00:00:00");
+        this.cliente.pessoa.altura = this.formulario.get("altura")?.value;
+        this.cliente.pessoa.peso = this.formulario.get("peso")?.value;
+    }
+
+    get telefones(): FormArray {
+        return this.telefoneForm?.get("telefones") as FormArray;
+    }
+
+    get emails(): FormArray {
+        return this.emailForm?.get("emails") as FormArray;
+    }
+
+    adicionarTelefone(): void {
+        const telefoneGroup = this.formBuilder.group({
+            numTelefone: "",
+        });
+        this.telefones.push(telefoneGroup);
+    }
+
+    adicionarEmail(): void {
+        const emailGroup = this.formBuilder.group({
+            enderecoEmail: "",
+        });
+        this.emails.push(emailGroup);
+    }
+
+    removerTelefone(index: number): void {
+        if (index >= 0 && index < this.telefones.length) {
+            this.telefones.removeAt(index);
+        }
+    }
+
+    removerEmail(index: number): void {
+        if (index >= 0 && index < this.emails.length) {
+            this.emails.removeAt(index);
         }
     }
 
@@ -38,17 +124,5 @@ export class CriarClienteComponent implements OnInit {
         this.formulario.controls["altura"].setValue("");
         this.formulario.controls["peso"].setValue("");
         this.formulario.controls["dataNascimento"].setValue("");
-    }
-
-    testeValidacao() {
-        console.log(this.formulario.valid);
-        console.log(this.formulario.get("telefones")?.errors);
-        console.log(this.formulario.get("nome")?.errors);
-        console.log(this.formulario.get("sexo")?.errors);
-        console.log(this.formulario.get("cpf")?.errors);
-        console.log(this.formulario.get("emails")?.errors);
-        console.log(this.formulario.get("altura")?.errors);
-        console.log(this.formulario.get("peso")?.errors);
-        console.log(this.formulario.get("dataNascimento")?.errors);
     }
 }

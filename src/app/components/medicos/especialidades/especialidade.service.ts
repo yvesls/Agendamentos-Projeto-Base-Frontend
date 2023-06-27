@@ -14,4 +14,9 @@ export class EspecialidadeService {
         const url = `${this.API}especialidade`;
         return this.http.get<Especialidade[]>(url);
     }
+
+    criar(especialidade: Especialidade): Observable<Especialidade> {
+        const url = `${this.API}especialidade`;
+        return this.http.post<Especialidade>(url, especialidade);
+    }
 }

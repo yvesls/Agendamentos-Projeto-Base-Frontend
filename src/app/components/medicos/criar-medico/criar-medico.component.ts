@@ -1,8 +1,15 @@
+import { MensagemSucessoComponent } from "./../../mensagem-sucesso/mensagem-sucesso.component";
+import { Medico } from "./../medico";
 import { Especialidade } from "./../especialidades/especialidade";
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MedicoService } from "../medico.service";
 import { EspecialidadeService } from "../especialidades/especialidade.service";
+import { MensagemErroComponent } from "../../mensagem-erro/mensagem-erro.component";
+import { Router } from "@angular/router";
+import { Rota } from "../../rota";
+import { MedicoEspecialidade } from "../medicoEspecialidade";
+import { MedicoespecialidadeService } from "../medicoespecialidade.service";
 
 @Component({
     selector: "app-criar-medico",
@@ -14,9 +21,32 @@ export class CriarMedicoComponent implements OnInit {
     listaEspecialidades: Especialidade[] = [];
     especialidadesIsExibida: boolean = false;
     especialidadesSelecionadas: Especialidade[] = [];
+    medicoEspecialidadesSalvas: Especialidade[] = [];
     especialidadesSelecionadasDescricao: string = "";
+    rota?: Rota;
+    medico: Medico = {
+        id: -1,
+        crm: "",
+        pessoa: {
+            nome: "",
+            sexo: "",
+            cpf: "",
+            dataNascimento: undefined,
+            peso: undefined,
+            altura: undefined,
+        },
+        dataCriacao: undefined,
+        dataExclusao: undefined,
+    };
+    medicoEspecialidade: MedicoEspecialidade = {
+        id: undefined,
+        especialidade: undefined,
+        medico: undefined,
+        dataCriacao: undefined,
+        dataExclusao: undefined,
+    };
 
-    constructor(private medicoService: MedicoService, private especialidadeService: EspecialidadeService, private formBuilder: FormBuilder) {}
+    constructor(private medicoService: MedicoService, private especialidadeService: EspecialidadeService, private medicoEspecialidadeService: MedicoespecialidadeService, private formBuilder: FormBuilder, private router: Router) {}
 
     ngOnInit(): void {
         this.formulario = this.formBuilder.group({
@@ -36,7 +66,77 @@ export class CriarMedicoComponent implements OnInit {
 
     criarMedico() {
         if (this.formulario.valid) {
+            this.defineMedico();
+            this.medicoService.criar(this.medico).subscribe((medicoSalvo) => {
+                this.rota = {
+                    caminho: "criarMedico",
+                };
+                if (medicoSalvo != null) {
+                    this.medico = medicoSalvo;
+                    this.criarEspecialidadesParaMedico();
+                } else {
+                    this.router.navigateByUrl("/erro/" + this.rota.caminho);
+                }
+            });
         }
+    }
+
+    criarEspecialidadesParaMedico() {
+        this.criarMedicoEspecialidades()
+            .then((savedItems) => {
+                console.log("Lista de itens salva com sucesso:", savedItems);
+            })
+            .catch((error) => {
+                console.error("Erro ao salvar a lista de itens:", error);
+            });
+    }
+
+    async criarMedicoEspecialidades(): Promise<MedicoEspecialidade[]> {
+        return new Promise<any[]>((resolve, reject) => {
+            let medicoEspecialidade;
+            let savedItems: number = 0;
+            let success: boolean = false;
+
+            this.especialidadesSelecionadas.forEach((especialidades) => {
+                medicoEspecialidade = this.defineMedicoEspecialidade(especialidades);
+
+                this.medicoEspecialidadeService.criar(medicoEspecialidade).subscribe((medicoEspecialidadeSalvo) => {
+                    this.medicoEspecialidadesSalvas.push(medicoEspecialidadeSalvo);
+                    savedItems++;
+                });
+            });
+            if (savedItems == this.medicoEspecialidadesSalvas.length) {
+                success = true;
+            }
+
+            this.rota = {
+                caminho: "criarMedico",
+            };
+
+            if (success) {
+                this.router.navigateByUrl("/sucesso/" + this.rota.caminho);
+                resolve(this.medicoEspecialidadesSalvas);
+            } else {
+                reject(this.router.navigateByUrl("/erro/" + this.rota.caminho));
+            }
+        });
+    }
+
+    defineMedico() {
+        this.medico.crm = this.formulario.get("crm")?.value;
+        this.medico.pessoa.nome = this.formulario.get("nome")?.value;
+        this.medico.pessoa.sexo = this.formulario.get("sexo")?.value.toUpperCase();
+        this.medico.pessoa.cpf = this.formulario.get("cpf")?.value;
+        this.medico.pessoa.dataNascimento = this.formulario.get("dataNascimento")?.value.substring(0, 10).concat("T00:00:00");
+        this.medico.pessoa.altura = this.formulario.get("altura")?.value;
+        this.medico.pessoa.peso = this.formulario.get("peso")?.value;
+    }
+
+    defineMedicoEspecialidade(especialidade: Especialidade): MedicoEspecialidade {
+        return {
+            especialidade: especialidade,
+            medico: this.medico,
+        };
     }
 
     exibirEspecialidades() {
@@ -62,16 +162,6 @@ export class CriarMedicoComponent implements OnInit {
         this.especialidadesSelecionadas.push(especialidade);
         this.especialidadesSelecionadasDescricao += virgula + especialidade.descricao;
         this.formulario.controls["especialidades"].setValue(this.especialidadesSelecionadasDescricao);
-        /*
-        console.log(this.formulario.get("especialidades")?.errors);
-        console.log(this.formulario.get("nome")?.errors);
-        console.log(this.formulario.get("sexo")?.errors);
-        console.log(this.formulario.get("cpf")?.errors);
-        console.log(this.formulario.get("crm")?.errors);
-        console.log(this.formulario.get("altura")?.errors);
-        console.log(this.formulario.get("peso")?.errors);
-        console.log(this.formulario.get("dataNascimento")?.errors);
-        */
     }
 
     limparCampos() {

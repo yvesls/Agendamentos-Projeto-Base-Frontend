@@ -1,4 +1,6 @@
 <section class="col-12 d-flex justify-content-end">
+    <app-mensagem-sucesso *ngIf="rota != null"></app-mensagem-sucesso>
+    <app-mensagem-erro *ngIf="rota != null"></app-mensagem-erro>
     <div class="container-formulario-criar-medico mt-5 col-12 d-flex flex-column align-items-between">
         <div class="nome-formulario">
             <h3 class="p-0 m-0">Cadastrar Médico</h3>

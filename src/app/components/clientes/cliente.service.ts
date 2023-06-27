@@ -14,4 +14,9 @@ export class ClienteService {
         const url = `${this.API}cliente`;
         return this.http.get<Cliente[]>(url);
     }
+
+    criar(cliente: Cliente): Observable<Cliente> {
+        const url = `${this.API}cliente`;
+        return this.http.post<Cliente>(url, cliente);
+    }
 }

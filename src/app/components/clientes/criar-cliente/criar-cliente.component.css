@@ -46,10 +46,35 @@ select:focus {
 }
 
 .salvar,
-.cancelar {
+.cancelar,
+.btn-rm-telefone,
+.btn-add-telefone,
+.btn-rm-email,
+.btn-add-email {
     border-radius: 5px;
     padding: 5px 20px;
     color: white;
+}
+
+.btn-add-telefone,
+.btn-add-email {
+    padding: 3px 12.5%;
+    margin-top: 15px;
+    background-color: green;
+    cursor: pointer;
+}
+
+.btn-rm-telefone,
+.btn-rm-email {
+    background-color: red;
+    padding: 5px 8px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.input-telefones,
+.input-emails {
+    margin-bottom: 7px;
 }
 
 .salvar {

@@ -9,12 +9,14 @@ import { MenuConsultaComponent } from "./components/menu-principal/menu-consulta
 import { MenuInclusaoComponent } from "./components/menu-principal/menu-inclusao/menu-inclusao.component";
 import { CriarMedicoComponent } from "./components/medicos/criar-medico/criar-medico.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CriarEspecialidadeComponent } from './components/medicos/especialidades/criar-especialidade/criar-especialidade.component';
-import { CriarClienteComponent } from './components/clientes/criar-cliente/criar-cliente.component';
-import { CriarAgendamentoComponent } from './components/agendamentos/criar-agendamento/criar-agendamento.component';
+import { CriarEspecialidadeComponent } from "./components/medicos/especialidades/criar-especialidade/criar-especialidade.component";
+import { CriarClienteComponent } from "./components/clientes/criar-cliente/criar-cliente.component";
+import { CriarAgendamentoComponent } from "./components/agendamentos/criar-agendamento/criar-agendamento.component";
+import { MensagemSucessoComponent } from "./components/mensagem-sucesso/mensagem-sucesso.component";
+import { MensagemErroComponent } from "./components/mensagem-erro/mensagem-erro.component";
 
 @NgModule({
-    declarations: [AppComponent, MenuPrincipalComponent, HomeComponent, MenuConsultaComponent, MenuInclusaoComponent, CriarMedicoComponent, CriarEspecialidadeComponent, CriarClienteComponent, CriarAgendamentoComponent],
+    declarations: [AppComponent, MenuPrincipalComponent, HomeComponent, MenuConsultaComponent, MenuInclusaoComponent, CriarMedicoComponent, CriarEspecialidadeComponent, CriarClienteComponent, CriarAgendamentoComponent, MensagemSucessoComponent, MensagemErroComponent],
     imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
     providers: [],
     bootstrap: [AppComponent],

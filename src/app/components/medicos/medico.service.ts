@@ -15,4 +15,9 @@ export class MedicoService {
         const url = `${this.API}medico`;
         return this.http.get<Medico[]>(url);
     }
+
+    criar(medico: Medico): Observable<Medico> {
+        const url = `${this.API}medico`;
+        return this.http.post<Medico>(url, medico);
+    }
 }

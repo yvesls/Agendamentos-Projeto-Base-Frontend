@@ -5,6 +5,8 @@ import { CriarMedicoComponent } from "./components/medicos/criar-medico/criar-me
 import { CriarEspecialidadeComponent } from "./components/medicos/especialidades/criar-especialidade/criar-especialidade.component";
 import { CriarClienteComponent } from "./components/clientes/criar-cliente/criar-cliente.component";
 import { CriarAgendamentoComponent } from "./components/agendamentos/criar-agendamento/criar-agendamento.component";
+import { MensagemSucessoComponent } from "./components/mensagem-sucesso/mensagem-sucesso.component";
+import { MensagemErroComponent } from "./components/mensagem-erro/mensagem-erro.component";
 
 const routes: Routes = [
     {
@@ -31,6 +33,18 @@ const routes: Routes = [
     {
         path: "criarAgendamento",
         component: CriarAgendamentoComponent,
+    },
+    {
+        path: "sucesso/:rota",
+        component: MensagemSucessoComponent,
+    },
+    {
+        path: "erro",
+        component: MensagemErroComponent,
+    },
+    {
+        path: "erro/:rota",
+        component: MensagemErroComponent,
     },
 ];
 

@@ -7,3 +7,17 @@
 *::selection {
     background-color: #ff6f00;
 }
+
+.container {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.loading {
+    background-color: rgba(75, 75, 75, 0.288);
+    height: 99.99999vh;
+}
