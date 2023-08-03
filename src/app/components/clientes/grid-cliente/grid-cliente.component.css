@@ -1,0 +1,139 @@
+.container-formulario-grid-cliente, .container-grid-cliente  {
+    min-height: 30vh;
+    border-radius: 5px;
+    background-color: #f1f5f6;
+    border: 0.5px solid #b8b8b8;
+}
+
+.container-grid-cliente {
+    min-height: 5vh;
+    margin-bottom: 2rem;
+    position: relative;
+    height: 30vh;
+}
+
+.container-grid-cliente ::-webkit-scrollbar {
+    width: 10px; 
+}
+  
+.container-grid-cliente ::-webkit-scrollbar-thumb {
+    background-color: #f16a02; 
+}
+
+.container-table {
+    border-radius: 5px;
+    position: relative;
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+.container-grid-cliente > table {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.container-grid-cliente > table > thead {
+    position: relative;
+}
+
+.barra-opcoes {
+    bottom: 0;
+    position: sticky;
+    padding: 10px;
+    z-index: 2;
+    border-top: 1px solid #b8b8b8;
+    border-radius: 5px;
+    height: 8.5vh;
+    background-color: white;
+}  
+
+.container-grid-cliente thead tr:first-child {
+    position: sticky;
+    top: -0.1rem;
+    background-color: #004ba8;
+    border-radius: 5px 5px 0 0;
+    color: white;
+    width: 100%;
+}
+
+.container-grid-cliente i {
+    cursor: pointer;
+}
+
+.container-grid-cliente th {
+    border: 1px solid #bdbbbb8f;
+    padding: 5px 10px;
+}
+
+.container-grid-cliente tbody tr td {
+    padding: 6px 0;
+    background: white;
+    color: #303030;
+    border: 1px solid #bdbbbb8f;
+}
+
+.nome-formulario {
+    background-color: #004ba8;
+    color: white;
+    padding: 10px;
+    margin: 0 -16px;
+    border-radius: 5px 5px 0 0;
+    position: relative;
+    top: -2px;
+}
+
+.formulario-grid-cliente {
+    min-height: 48vh;   
+}
+
+input,
+select {
+    border: 1px solid #b8b8b8;
+    border-radius: 5px;
+}
+
+input {
+    height: 2rem;
+    padding: 10px 3px;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #888888;
+}
+
+select {
+    height: 2rem;
+    background-color: white;
+}
+
+select:focus {
+    outline: none;
+    border: 1px solid #888888;
+}
+
+.filtrar,
+.limpar {
+    border-radius: 5px;
+    padding: 5px 20px;
+    color: white;
+}
+
+.filtrar {
+    background-color: #f16a02;
+}
+
+.limpar {
+    background-color: #0e6fe8;
+}
+
+.campo {
+    position: relative;
+}
+
+.mensagem_erro {
+    position: absolute;
+    font-size: 12px;
+    color: red;
+    top: 90%;
+}

@@ -1,7 +1,8 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Cliente } from "./cliente";
+import { FiltroCliente } from "./grid-cliente/filtro-cliente";
 
 @Injectable({
     providedIn: "root",
@@ -13,6 +14,11 @@ export class ClienteService {
     buscarClientes(): Observable<Cliente[]> {
         const url = `${this.API}cliente`;
         return this.http.get<Cliente[]>(url);
+    }
+
+    filtrarClientes(filtro: FiltroCliente): Observable<Cliente[]> {
+        const url = `${this.API}cliente/search`;
+        return this.http.post<Cliente[]>(url, filtro);
     }
 
     criar(cliente: Cliente): Observable<Cliente> {

@@ -2,8 +2,11 @@
     height: 99.9vh;
     max-height: 99.99999vh;
     min-height: 99.99999vh;
+    width: 7rem;
     background-color: #004ba8;
     text-decoration: none;
+    position: fixed;
+    z-index: 1;
 }
 
 .menu {

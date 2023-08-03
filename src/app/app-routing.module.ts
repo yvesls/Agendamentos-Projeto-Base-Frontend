@@ -7,6 +7,7 @@ import { CriarClienteComponent } from "./components/clientes/criar-cliente/criar
 import { CriarAgendamentoComponent } from "./components/agendamentos/criar-agendamento/criar-agendamento.component";
 import { MensagemSucessoComponent } from "./components/mensagem-sucesso/mensagem-sucesso.component";
 import { MensagemErroComponent } from "./components/mensagem-erro/mensagem-erro.component";
+import { GridClienteComponent } from "./components/clientes/grid-cliente/grid-cliente.component";
 
 const routes: Routes = [
     {
@@ -29,6 +30,10 @@ const routes: Routes = [
     {
         path: "criarCliente",
         component: CriarClienteComponent,
+    },
+    {
+        path: "gridCliente",
+        component: GridClienteComponent,
     },
     {
         path: "criarAgendamento",

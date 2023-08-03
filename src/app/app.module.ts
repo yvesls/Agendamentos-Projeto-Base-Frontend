@@ -14,10 +14,11 @@ import { CriarClienteComponent } from "./components/clientes/criar-cliente/criar
 import { CriarAgendamentoComponent } from "./components/agendamentos/criar-agendamento/criar-agendamento.component";
 import { MensagemSucessoComponent } from "./components/mensagem-sucesso/mensagem-sucesso.component";
 import { MensagemErroComponent } from "./components/mensagem-erro/mensagem-erro.component";
-
+import { GridClienteComponent } from './components/clientes/grid-cliente/grid-cliente.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
-    declarations: [AppComponent, MenuPrincipalComponent, HomeComponent, MenuConsultaComponent, MenuInclusaoComponent, CriarMedicoComponent, CriarEspecialidadeComponent, CriarClienteComponent, CriarAgendamentoComponent, MensagemSucessoComponent, MensagemErroComponent],
-    imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
+    declarations: [AppComponent, MenuPrincipalComponent, HomeComponent, MenuConsultaComponent, MenuInclusaoComponent, CriarMedicoComponent, CriarEspecialidadeComponent, CriarClienteComponent, CriarAgendamentoComponent, MensagemSucessoComponent, MensagemErroComponent, GridClienteComponent],
+    imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, NgxPaginationModule],
     providers: [],
     bootstrap: [AppComponent],
 })
