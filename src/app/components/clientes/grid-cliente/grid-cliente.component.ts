@@ -12,7 +12,7 @@ import { FiltroCliente } from './filtro-cliente';
 export class GridClienteComponent implements OnInit {
   formulario!: FormGroup;
   filtro!: FiltroCliente;
-  totalPages: number = 26;
+  totalPages!: number;
   page : number = 1 ;
   pageSize : number = 10;
   listaClientes!: Cliente[];
@@ -32,9 +32,7 @@ export class GridClienteComponent implements OnInit {
         pageSize: [this.pageSize],
         page: [this.page],
     });
-
     this.pesquisarCliente(this.page);
-    console.log(this.listaClientes);
   }
 
   pesquisarCliente(paginaAtual: number) {
@@ -46,7 +44,14 @@ export class GridClienteComponent implements OnInit {
     this.clienteService.filtrarClientes(this.filtro).subscribe((listaClientes) => {
       this.listaClientes = listaClientes;
     });
+    if(paginaAtual == 1)
+      this.buscarQuantidadeFiltro(this.filtro);
+  }
 
+  buscarQuantidadeFiltro(filtro: FiltroCliente) {
+    this.clienteService.buscarQuantidade(filtro).subscribe((quantidade) => {
+      this.totalPages = quantidade;
+    });
   }
 
   exibirAtivoInativo(dataExclusao: Date | undefined): boolean {

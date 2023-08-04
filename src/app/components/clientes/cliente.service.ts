@@ -21,6 +21,11 @@ export class ClienteService {
         return this.http.post<Cliente[]>(url, filtro);
     }
 
+    buscarQuantidade(filtro: FiltroCliente): Observable<number> {
+        const url = `${this.API}cliente/quantidade`;
+        return this.http.post<number>(url, filtro);
+    }
+
     criar(cliente: Cliente): Observable<Cliente> {
         const url = `${this.API}cliente`;
         return this.http.post<Cliente>(url, cliente);

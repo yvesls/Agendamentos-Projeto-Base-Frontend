@@ -74,7 +74,8 @@
                     </tr>
                 </tbody>
             </table>   
-            <div class="barra-opcoes">
+            <div class="barra-opcoes pt-2">
+                <blockquote>Total registros: {{totalPages}}</blockquote>
                 <div class="text-right">
                     <pagination-controls (pageChange)="pesquisarCliente($event)" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
                 </div>
